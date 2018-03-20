@@ -12,6 +12,7 @@ declare module "pg-promise-strict"{
         query(queryString:string, params?:any[]):{
             fetchUniqueValue():Promise<any>
         }
+        done():void
     }
     function connect(opts:ConnectParams):Client
 }

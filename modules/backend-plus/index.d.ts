@@ -1,6 +1,6 @@
 declare module 'backend-plus'{
     class AppBackend{
-        start()
+        start():Promise<void>
         getTables():string[]
     }
 }
