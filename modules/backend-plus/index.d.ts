@@ -4,30 +4,31 @@ declare module 'backend-plus'{
     interface ProcedureDef{
 
     }
-    interface MenuInfoBase{
+    type MenuInfoBase={
         menuType:string // 'menu'|'table'|'proc'
         name:string
         label?:string
     }
-    interface MenuInfoMenu extends MenuInfoBase{
+    type MenuInfoMenu = {
         menuType:'menu'
-        content:MenuInfo[]
-    }
-    interface MenuInfoTable extends MenuInfoBase{
+        menuContent:MenuInfo[]
+    } & MenuInfoBase;
+    type MenuInfoTable = {
         menuType:'table'
         table?:string
-    }
-    interface MenuInfoProc extends MenuInfoBase{
+    } & MenuInfoBase;
+    type MenuInfoProc={
         menuType:'proc'
-    }
-    type MenuInfo = MenuInfoBase; // MenuInfoMenu | MenuInfoTable | MenuInfoProc;
-
+    } & MenuInfoBase;
+    // type MenuInfo = MenuInfoBase; // MenuInfoMenu | MenuInfoTable | MenuInfoProc;
+    type MenuInfo = MenuInfoMenu | MenuInfoTable | MenuInfoProc;
+    type MenuDefinition = {menu:MenuInfo[]}
     class AppBackend{
         app:express.Express
         start():Promise<void>
         getTables():string[]
         addLoggedServices():void
         getProcedures():Promise<ProcedureDef[]>
-        getMenu(context?:{}):{menu:MenuInfo[]}
+        getMenu(context?:{}):MenuDefinition
     }
 }
