@@ -1,5 +1,6 @@
 declare module 'backend-plus'{
     import * as express from "express";
+    import * as pg from "pg-promise-strict";
 
     interface ProcedureDef{
 
@@ -20,6 +21,15 @@ declare module 'backend-plus'{
     type MenuInfoProc={
         menuType:'proc'
     } & MenuInfoBase;
+    type Context={
+        be:AppBackend, user:object, session:object, 
+        username:string, machineId:string, 
+        navigator:string
+    }
+    interface Request extends express.Request{
+        user:{[key:string]:any}
+        session:{[key:string]:any}
+    }
     // type MenuInfo = MenuInfoBase; // MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuInfo = MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuDefinition = {menu:MenuInfo[]}
@@ -27,8 +37,10 @@ declare module 'backend-plus'{
         app:express.Express
         start():Promise<void>
         getTables():string[]
+        getContext(req:Request):Context
         addLoggedServices():void
         getProcedures():Promise<ProcedureDef[]>
         getMenu(context?:{}):MenuDefinition
+        inTransaction<T>(context:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
     }
 }
