@@ -4,6 +4,7 @@
     "version": "0.1.4",
     "license": "MIT",
     "devDependencies": {
-        "@types/express": "^4.11.1"
+        "@types/express": "^4.11.1",
+        "js-to-html": "~1.0.2"
     }
 }

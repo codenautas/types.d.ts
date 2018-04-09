@@ -14,21 +14,20 @@ declare module "myOwn"{
         [key:string]:(addrParams:AddrParams)=>void
     }
 
-    interface Depot{
-        x:boolean
-    }
-
-    interface ClientSideDefinition{
-        update?:true|((depot:Depot, fieldName:string)=>void)
-        prepare:(depot:Depot, fieldName:string)=>void
-    }
-
-    interface ClientSides{
-        [key:string]:ClientSideDefinition
-    }
 
     function myOwn():void
     namespace myOwn{
+        interface ClientSideDefinition{
+            update?:true|((depot:Depot, fieldName:string)=>void)
+            prepare:(depot:Depot, fieldName:string)=>void
+        }
+    
+        interface ClientSides{
+            [key:string]:ClientSideDefinition
+        }
+        interface Depot{
+            rowControls:{[key:string]:HTMLElement}
+        }
         var wScreens:WScreens
         var clientSides:ClientSides
     }
