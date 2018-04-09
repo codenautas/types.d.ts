@@ -27,6 +27,7 @@ declare module "myOwn"{
         }
         interface Depot{
             rowControls:{[key:string]:HTMLElement}
+            row:{[key:string]:any}
         }
         var wScreens:WScreens
         var clientSides:ClientSides

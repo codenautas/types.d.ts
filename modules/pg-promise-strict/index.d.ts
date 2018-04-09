@@ -7,10 +7,29 @@ declare module "pg-promise-strict"{
         password?:string
         port?:string
     }
+    interface Result{
+        rowCount:number
+    }
+    interface ResultOneRow extends Result{
+        row:{[key:string]:any}
+    }
+    interface ResultOneRowIfExists extends Result{
+        row?:{[key:string]:any}|null
+    }
+    interface ResultRows extends Result{
+        rows:{[key:string]:any}[]
+    }
+    interface ResultValue extends Result{
+        value:any
+    }
     type Client={
         executeSqlScript(fileName:string):Promise<void>
         query(queryString:string, params?:any[]):{
-            fetchUniqueValue():Promise<any>
+            fetchUniqueValue():Promise<ResultValue>
+            fetchUniqueRow():Promise<ResultOneRow>
+            fetchOneRowIfExists():Promise<ResultOneRow>
+            fetchAll():Promise<ResultRows>
+            execute():Promise<Result>
         }
         done():void
     }
