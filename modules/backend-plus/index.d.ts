@@ -18,6 +18,14 @@ declare module 'backend-plus'{
         menuType:'table'
         table?:string
     } & MenuInfoBase;
+    interface ClientModuleDefinition{
+        type:'js'|'css'
+        module?:string
+        src?:string
+        path?:string
+        modPath?:string
+        file?:string
+    }
     type MenuInfoProc={
         menuType:'proc'
     } & MenuInfoBase;
@@ -38,6 +46,7 @@ declare module 'backend-plus'{
         start():Promise<void>
         getTables():string[]
         getContext(req:Request):Context
+        clientIncludes(req:Request, hideBEPlusInclusions?:boolean):ClientModuleDefinition[]
         addLoggedServices():void
         getProcedures():Promise<ProcedureDef[]>
         getMenu(context?:{}):MenuDefinition
