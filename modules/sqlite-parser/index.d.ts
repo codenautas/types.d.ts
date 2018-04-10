@@ -30,18 +30,19 @@ declare module 'sqlite-parser' {
 
         interface ExpressionNode extends BaseNode {
             type: 'expression'
-            operation: string
             format: 'binary'|'unary'
         }
 
         interface BinaryExpressionNode extends ExpressionNode {
             format: 'binary'
+            operation: string
             left: BaseNode
             right: BaseNode
         }
 
         interface UnaryExpressionNode extends ExpressionNode {
             format: 'unary'
+            operator: string
             expression: BaseNode
         }
 
