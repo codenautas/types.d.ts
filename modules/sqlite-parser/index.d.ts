@@ -5,6 +5,8 @@ declare module 'sqlite-parser' {
     namespace sqliteParser {
         // type Operation = '+'|'-'|'*'|'/'
 
+        type dataType = 'text' | 'decimal' | 'boolean' | 'date' | 'datetime';
+
         interface BaseNode {
             type: string,
         }
@@ -17,7 +19,7 @@ declare module 'sqlite-parser' {
         interface LiteralNode extends BaseNode {
             type: 'literal'
             value: string
-            variant: 'decimal' | 'text'
+            variant: dataType
         }
         // interface ArgsExpressionNode extends ExpressionNode {
         //     expression: BaseNode[]
