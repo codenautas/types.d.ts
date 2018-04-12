@@ -21,7 +21,6 @@ declare module "myOwn"{
             update?:true|((depot:Depot, fieldName:string)=>void)
             prepare:(depot:Depot, fieldName:string)=>void
         }
-    
         interface ClientSides{
             [key:string]:ClientSideDefinition
         }
@@ -31,6 +30,7 @@ declare module "myOwn"{
         }
         var wScreens:WScreens
         var clientSides:ClientSides
+        function createForkeableButton(object):HTMLButtonElement
     }
     export = myOwn
 }

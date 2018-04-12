@@ -49,7 +49,7 @@ declare module 'backend-plus'{
         clientIncludes(req:Request, hideBEPlusInclusions?:boolean):ClientModuleDefinition[]
         addLoggedServices():void
         getProcedures():Promise<ProcedureDef[]>
-        getMenu(context?:{}):MenuDefinition
+        getMenu(context?:{}):{menu:MenuInfoBase[]}
         inTransaction<T>(context:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
     }
 }
