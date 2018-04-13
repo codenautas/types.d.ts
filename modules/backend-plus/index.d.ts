@@ -53,6 +53,6 @@ declare module 'backend-plus'{
         getProcedures():Promise<ProcedureDef[]>
         getMenu(context?:{}):{menu:MenuInfoBase[]}
         inTransaction<T>(context:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
-        procedureDefCompleter(ProcedureDef):ProcedureDef
+        procedureDefCompleter(procedureDef:ProcedureDef):ProcedureDef
     }
 }
