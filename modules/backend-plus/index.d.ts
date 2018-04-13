@@ -41,6 +41,7 @@ declare module 'backend-plus'{
     // type MenuInfo = MenuInfoBase; // MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuInfo = MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuDefinition = {menu:MenuInfo[]}
+    function require_resolve(moduleName:string):string
     class AppBackend{
         app:express.Express
         start():Promise<void>
