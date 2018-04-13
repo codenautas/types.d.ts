@@ -38,6 +38,7 @@ declare module 'backend-plus'{
         user:{[key:string]:any}
         session:{[key:string]:any}
     }
+    interface Response extends express.Response{}
     // type MenuInfo = MenuInfoBase; // MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuInfo = MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuDefinition = {menu:MenuInfo[]}
@@ -52,5 +53,6 @@ declare module 'backend-plus'{
         getProcedures():Promise<ProcedureDef[]>
         getMenu(context?:{}):{menu:MenuInfoBase[]}
         inTransaction<T>(context:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
+        procedureDefCompleter(ProcedureDef):ProcedureDef
     }
 }
