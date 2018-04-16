@@ -27,6 +27,13 @@ declare module "myOwn"{
         }
         var wScreens:WScreens
         var clientSides:ClientSides
+        var path:{
+            img:string
+        }
+        function getRect(control:HTMLElement):{
+            top:number,
+            left:number
+        }
         function createForkeableButton(object):HTMLButtonElement
     }
     export = myOwn
