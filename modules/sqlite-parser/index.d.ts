@@ -1,11 +1,10 @@
+// declaration file for give type support to Typescript code that imports/uses sqlite-parser
 declare module 'sqlite-parser' {
     
     function sqliteParser(expression: string): sqliteParser.ParsedObject
 
     namespace sqliteParser {
-        // type Operation = '+'|'-'|'*'|'/'
-
-        // sqlite-parser types for literal types
+        // some sqlite-parser literal types
         type dataType = 'text' | 'decimal' | 'boolean' | 'date' | 'datetime' | 'null';
 
         interface BaseNode {
