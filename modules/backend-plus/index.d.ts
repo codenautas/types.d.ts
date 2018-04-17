@@ -39,6 +39,7 @@ declare module 'backend-plus'{
         session:{[key:string]:any}
     }
     interface Response extends express.Response{}
+    interface Express extends express.Express{}
     // type MenuInfo = MenuInfoBase; // MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuInfo = MenuInfoMenu | MenuInfoTable | MenuInfoProc;
     type MenuDefinition = {menu:MenuInfo[]}
@@ -49,10 +50,12 @@ declare module 'backend-plus'{
         getTables():string[]
         getContext(req:Request):Context
         clientIncludes(req:Request, hideBEPlusInclusions?:boolean):ClientModuleDefinition[]
+        addSchrödingerServices(mainApp:express.Express, baseUrl:string):void
         addLoggedServices():void
         getProcedures():Promise<ProcedureDef[]>
         getMenu(context?:{}):{menu:MenuInfoBase[]}
-        inTransaction<T>(context:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
+        inDbClient<T>(req:Request|null, doThisWithDbClient:(client:pg.Client)=>Promise<T>):Promise<T>
+        inTransaction<T>(req:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
         procedureDefCompleter(procedureDef:ProcedureDef):ProcedureDef
     }
 }
