@@ -34,7 +34,7 @@ declare module "myOwn"{
             top:number,
             left:number
         }
-        function createForkeableButton(object):HTMLButtonElement
+        function createForkeableButton(object:object):HTMLButtonElement
     }
     export = myOwn
 }
