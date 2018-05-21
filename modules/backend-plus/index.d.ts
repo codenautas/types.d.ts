@@ -28,11 +28,15 @@ declare module 'backend-plus'{
     }
     type MenuInfoProc={
         menuType:'proc'
+        proc?:string
     } & MenuInfoBase;
     type Context={
         be:AppBackend, user:object, session:object, 
         username:string, machineId:string, 
         navigator:string
+    }
+    type ProcedureContext=Context & {
+        client:pg.Client
     }
     interface Request extends express.Request{
         user:{[key:string]:any}
@@ -57,5 +61,6 @@ declare module 'backend-plus'{
         inDbClient<T>(req:Request|null, doThisWithDbClient:(client:pg.Client)=>Promise<T>):Promise<T>
         inTransaction<T>(req:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
         procedureDefCompleter(procedureDef:ProcedureDef):ProcedureDef
+        tableDefAdapt(tableDef:any, context:Context):any // TODO:revisar
     }
 }
