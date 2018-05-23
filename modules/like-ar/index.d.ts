@@ -1,14 +1,14 @@
 declare module "like-ar"{
-    type ObjectWithArrayFunctions={
-        forEach:( callback:(value:any, key:string)=>void ) => ObjectWithArrayFunctions
-        map    :( callback:(value:any, key:string)=>any  ) => ObjectWithArrayFunctions
-        filter :( callback:(value:any, key:string)=>any  ) => ObjectWithArrayFunctions
+    type ObjectWithArrayFunctions<T>={
+        forEach:( callback:(value:T  , key:string)=>void   ) => ObjectWithArrayFunctions<T>
+        map    :<U>( callback:(value:T, key:string)=>U     ) => ObjectWithArrayFunctions<U>
+        filter :( callback:(value:T  , key:string)=>boolean) => ObjectWithArrayFunctions<T>
         keys   :() => string[]
-        array  :() => any[]
-        plain  :() => object
+        array  :() => T[]
+        plain  :() => {[key:string]:T}
         join   :(separator:string) => string
     }
-    function likeAr(o:object):ObjectWithArrayFunctions
+    function likeAr<T>(o:{[key:string]:T}):ObjectWithArrayFunctions<T>
     namespace likeAr{}
     export = likeAr
 }
