@@ -34,5 +34,10 @@ declare module "pg-promise-strict"{
         done():void
     }
     function connect(opts:ConnectParams):Client
+    function quoteText(textValue:string):string // deprecated
+    function quoteLiteral(textValue:string):string
+    function quoteNullable(textValue:string|null):string
+    function quoteIdent(name:string):string
+    function quoteObject(name:string):string // deprecated
 }
 
