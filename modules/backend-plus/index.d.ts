@@ -79,6 +79,7 @@ declare module 'backend-plus'{
     }
     export type FieldsForConnect = (string | {source:string, target:string})[]
     export type ForeignKey = {references:string, fields:FieldsForConnect, alias?:string}
+    export type Constraint = {constraintType:'check'|'unique'|'not null', expr?:string, fields?:string[], consName?:string}
     export type TableDefinition = EditableDbDefinition & {
         name:string
         elementName?:string
@@ -91,6 +92,7 @@ declare module 'backend-plus'{
         }
         foreignKeys?:ForeignKey[]
         softForeignKeys?:ForeignKey[]
+        constraints?:Constraint[]
         detailTables?:{table:string, fields:FieldsForConnect, abr:string}[]
     }
     type TableItemDef=string|{name:string}&({tableGenerator:(context:TableContext)=>TableDefinition})
