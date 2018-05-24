@@ -77,6 +77,8 @@ declare module 'backend-plus'{
             select?:boolean
         }
     }
+    export type FieldsForConnect = (string | {source:string, target:string})[]
+    export type ForeignKey = {references:string, fields:FieldsForConnect, alias?:string}
     export type TableDefinition = EditableDbDefinition & {
         name:string
         elementName?:string
@@ -87,6 +89,9 @@ declare module 'backend-plus'{
         sql?:{
             where?:string
         }
+        foreignKeys?:ForeignKey[]
+        softForeignKeys?:ForeignKey[]
+        detailTables?:{table:string, fields:FieldsForConnect, abr:string}[]
     }
     type TableItemDef=string|{name:string}&({tableGenerator:(context:TableContext)=>TableDefinition})
     class AppBackend{
