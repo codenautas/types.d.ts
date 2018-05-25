@@ -34,5 +34,9 @@ declare module "pg-promise-strict"{
         done():void
     }
     function connect(opts:ConnectParams):Client
+    var debug:{
+        pool?:boolean
+    }
+    function setAllTypes():void
 }
 
