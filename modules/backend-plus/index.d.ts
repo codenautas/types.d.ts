@@ -26,15 +26,25 @@ declare module 'backend-plus'{
         menuType:string // 'menu'|'table'|'proc'
         name:string
         label?:string
+        [k:string]:any
+    }
+    type MenuInfoMinimo={
+        // menuType:string // 'menu'|'table'|'proc'
+        name:string
+        label?:string
     }
     type MenuInfoMenu = {
         menuType:'menu'
         menuContent:MenuInfo[]
-    } & MenuInfoBase;
+    } & MenuInfoMinimo;
     type MenuInfoTable = {
         menuType:'table'
         table?:string
-    } & MenuInfoBase;
+    } & MenuInfoMinimo;
+    type MenuInfoProc={
+        menuType:'proc'
+        proc?:string
+    } & MenuInfoMinimo;
     interface ClientModuleDefinition{
         type:'js'|'css'
         module?:string
@@ -43,12 +53,9 @@ declare module 'backend-plus'{
         modPath?:string
         file?:string
     }
-    type MenuInfoProc={
-        menuType:'proc'
-        proc?:string
-    } & MenuInfoBase;
     type MenuInfo = MenuInfoMenu | MenuInfoTable | MenuInfoProc;
-    type MenuDefinition = {menu:MenuInfo[]}
+    // type MenuDefinition = {menu:Readonly<MenuInfoBase[]>}
+    type MenuDefinition = {menu:MenuInfoBase[]}
     // types for Table definitions
     export interface TableContext extends Context{
         puede:object
@@ -106,10 +113,12 @@ declare module 'backend-plus'{
         addSchrödingerServices(mainApp:express.Express, baseUrl:string):void
         addLoggedServices():void
         getProcedures():Promise<ProcedureDef[]>
-        getMenu(context?:{}):{menu:MenuInfoBase[]}
+        getMenu(context?:Context):MenuDefinition
         inDbClient<T>(req:Request|null, doThisWithDbClient:(client:pg.Client)=>Promise<T>):Promise<T>
         inTransaction<T>(req:Request|null, doThisWithDbTransaction:(client:pg.Client)=>Promise<T>):Promise<T>
         procedureDefCompleter(procedureDef:ProcedureDef):ProcedureDef
         tableDefAdapt(tableDef:TableDefinition, context:Context):TableDefinition
+        pushApp(dirname:string):void
+
     }
 }
