@@ -95,7 +95,14 @@ declare module 'backend-plus'{
         fields:FieldDefinition[],
         primaryKey:string[],
         sql?:{
+            isTable?:boolean
+            from?:string
             where?:string
+            postCreateSqls?:string
+            logicalDeletes?:{
+                fieldName:string
+                valueToDelete:string
+            }
         }
         foreignKeys?:ForeignKey[]
         softForeignKeys?:ForeignKey[]
