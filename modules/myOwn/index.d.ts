@@ -2,6 +2,8 @@ declare module "myOwn" {
 
     function myOwn(): void
     namespace myOwn {
+        var firstDisplayCount:number
+        var i18n:any
         interface AddrParams {
             w?: 'menu' | 'table' | 'proc' | 'path' | 'function'
             i?: string
@@ -38,3 +40,4 @@ declare module "myOwn" {
     }
     export = myOwn
 }
+
