@@ -1,10 +1,5 @@
-
-// import * as TypedControls from "../typed-controls";
-// import {TypedControl} from "../typed-controls";
-import "../typed-controls";
-import { TypedControlBase, TypedControlX, TypedControl } from "typed-controls";
-
 declare module "myOwn" {
+    import { TypedControlBase, TypedControl } from "typed-controls";
     function myOwn(): void
     namespace myOwn {
         var firstDisplayCount:number
@@ -49,14 +44,10 @@ declare module "myOwn" {
         interface ProcedureParameters {
             [key:string]:string | number
         }
-
-        interface AttrFunc {
-            [key: string]: (params:ProcedureParameters) => any | {[key: string]: AttrFunc}
-        } 
-        interface MyAjax {
-            tables: (()=> void)[]
+        type AttrFunc=(params?:ProcedureParameters) => Promise<any>
+        type MyAjax={
             [key: string]: AttrFunc
-        } // ajax = {tabla_datos: {generar: ()=>any}} // return ajax.tabla_datos.generar
+        };
         var wScreens: WScreens
         var clientSides: ClientSides
         var path: {
