@@ -1,3 +1,7 @@
 declare module "typed-controls" {
-    function adaptElement(control:HTMLElement, typeInfo:any):void
+    type TypedControlBase<T>={
+        setTypedValue(value:T):void
+    }
+    type TypedControl<T>=TypedControlBase<T> & HTMLElement;
+    function adaptElement<T>(control:TypedControl<T>, typeInfo:any):void
 }

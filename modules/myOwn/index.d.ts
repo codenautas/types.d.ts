@@ -1,6 +1,10 @@
 
-declare module "myOwn" {
+// import * as TypedControls from "../typed-controls";
+// import {TypedControl} from "../typed-controls";
+import "../typed-controls";
+import { TypedControlBase, TypedControlX, TypedControl } from "typed-controls";
 
+declare module "myOwn" {
     function myOwn(): void
     namespace myOwn {
         var firstDisplayCount:number
@@ -37,7 +41,7 @@ declare module "myOwn" {
         }
 
         interface Depot {
-            rowControls: { [key: string]: HTMLElement }
+            rowControls: { [key: string]: TypedControl<any> }
             row: { [key: string]: any }
             manager: TableGrid
         }
@@ -65,6 +69,15 @@ declare module "myOwn" {
             left: number
         }
         function createForkeableButton(object: object): HTMLButtonElement
+        function dialogUpload<T extends object>(
+            ajaxPath:string[],
+            ajaxParams:T,
+            ajaxPrepareResultFun:(result:any)=>any, 
+            showWithMiniMenu:boolean, 
+            messages:{[keyof:string]:string}, 
+            refresheable?:{refresh:()=>void}, 
+            acceptPhotos?:boolean
+        ):{img:string, value:true, label:string, doneFun: ()=>void}|void
     }
     export = myOwn
 }
