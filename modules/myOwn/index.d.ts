@@ -61,7 +61,7 @@ declare module "myOwn" {
         }
         function createForkeableButton(object: object): HTMLButtonElement
         function dialogUpload<T extends object>(
-            ajaxPath:string[],
+            ajaxPath:string|string[],
             ajaxParams:T,
             ajaxPrepareResultFun:(result:any)=>any, 
             showWithMiniMenu:boolean, 
