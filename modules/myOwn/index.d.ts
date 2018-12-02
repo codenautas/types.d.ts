@@ -13,6 +13,7 @@ declare module "myOwn" {
             path?: string
             pageTitle?: string
             title?: string
+            table?: string
         }
         interface WScreens {
             [key: string]: (addrParams: AddrParams) => void
@@ -59,7 +60,7 @@ declare module "myOwn" {
             top: number,
             left: number
         }
-        function createForkeableButton(object: object): HTMLButtonElement
+        function createForkeableButton(addrParams: AddrParams, opts:string|{label:string, class?:string, onclick?:(event?:Event)=>any, updateHrefBeforeClick?:(event?:Event)=>any}): HTMLButtonElement
         function dialogUpload<T extends object>(
             ajaxPath:string|string[],
             ajaxParams:T,
