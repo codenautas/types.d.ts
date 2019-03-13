@@ -1,9 +1,9 @@
-declare module "myOwn" {
-    import { TypedControlBase, TypedControl } from "typed-controls";
-    function myOwn(): void
-    namespace myOwn {
+    // import { TypedControlBase, TypedControl } from "typed-controls";
+    declare function myOwn(): void
+    declare namespace myOwn {
         var firstDisplayCount:number
-        var i18n:any
+        var i18n:{es?:{[key:string]:string}, en?:{[key:string]:string}}
+        var messages:{[key:string]:string}
 
         interface AddrParams {
             w?: 'menu' | 'table' | 'proc' | 'path' | 'function'
@@ -40,12 +40,17 @@ declare module "myOwn" {
             rowControls: { [key: string]: TypedControl<any> }
             row: { [key: string]: any }
             manager: TableGrid
+            primaryKeyValues: any[]
         }
         
         interface ProcedureParameters {
-            [key:string]:string | number
+            [key:string]:any
         }
-        type AttrFunc=(params?:ProcedureParameters) => Promise<any>
+        type ProgressPacket = {loaded:number; total: number; lengthComputable:boolean}
+        interface ProcedureOpts {
+            uploading: (progress:ProgressPacket)=>void
+        }
+        type AttrFunc=(params?:ProcedureParameters,opts?:{}) => Promise<any>
         type MyAjax={
             [key: string]: AttrFunc
         };
@@ -61,6 +66,13 @@ declare module "myOwn" {
             left: number
         }
         function createForkeableButton(addrParams: AddrParams, opts:string|{label:string, class?:string, onclick?:(event?:Event)=>any, updateHrefBeforeClick?:(event?:Event)=>any}): HTMLButtonElement
+        function createSmartButton(opts:{
+            buttonLabel?:string,
+            confirmMessage?:string,
+            mainFun:(opts:any)=>Promise<void>,
+            insideElement?:HTMLElement,
+            initialState?:'active'
+        }): HTMLButtonElement
         function dialogUpload<T extends object>(
             ajaxPath:string|string[],
             ajaxParams:T,
@@ -70,7 +82,7 @@ declare module "myOwn" {
             refresheable?:{refresh:()=>void}, 
             acceptPhotos?:boolean
         ):{img:string, value:true, label:string, doneFun: ()=>void}|void
+        function alertError(err:Error):Promise<void>
     }
-    export = myOwn
-}
 
+    declare var my:typeof myOwn
