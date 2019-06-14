@@ -6,6 +6,8 @@ import "dialog-promise";
 
 declare function alertPromise(message:string, opts?:DialogOptions):Promise<void>
 
+declare function promptPromise(message:string, defaultOrOpts?:DialogOptions, optsIfDefault?:DialogOptions):Promise<void>
+
 declare function confirmPromise(message:string, opts?:DialogOptions):Promise<void>
 
 declare function miniMenuPromise(listOptions:{value:any, label:string, img?:string, doneFun?:()=>void}[], opts?:DialogOptions):Promise<any>
