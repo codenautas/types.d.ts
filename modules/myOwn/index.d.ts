@@ -83,6 +83,12 @@
             acceptPhotos?:boolean
         ):{img:string, value:true, label:string, doneFun: ()=>void}|void
         function alertError(err:Error):Promise<void>
+        var config:{
+            config:{
+                "background-img":string
+            }
+        }
+        function showPage():void
     }
 
     declare var my:typeof myOwn

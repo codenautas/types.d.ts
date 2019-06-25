@@ -1,4 +1,5 @@
 declare module "typed-controls" {
+    var showLupa:number|boolean
     type TypedControlBase<T>={} | {
         controledType:{
             typeInfo:{
@@ -14,6 +15,6 @@ declare module "typed-controls" {
         getTypedValue():T
         disable(disabled?:boolean):void
     }
-    type TypedControl<T>=TypedControlBase<T> & HTMLElement;
+    type TypedControl<T>=TypedControlBase<T> & HTMLElement
     function adaptElement<T>(control:TypedControl<T>, typeInfo:any):void
 }
