@@ -16,7 +16,7 @@
             table?: string
         }
         interface WScreens {
-            [key: string]: (addrParams: AddrParams) => void
+            [key: string]: (addrParams: AddrParams) => Promise<void>
         }
         interface ClientSideDefinition {
             update?: true | ((depot: Depot, fieldName: string) => void)
