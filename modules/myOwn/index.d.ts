@@ -89,6 +89,16 @@
             }
         }
         function showPage():void
+        var autoSetupFunctions:(()=>Promise<void>)[]
+        var offline:{
+            mode:string
+        }
+        function getReference(tableName:string):{
+            dataReady:Promise<any[]>
+        }
+        var cache:{ // app cache 
+            [key:string]: any 
+        }
     }
 
     declare var my:typeof myOwn
