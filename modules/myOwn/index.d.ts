@@ -15,7 +15,14 @@
             title?: string
             table?: string
         }
+        interface ResultManager {
+            showText(result:any, divResult:HTMLDivElement):void
+            showError(err:Error, divResult:HTMLDivElement):void
+        }
         interface WScreens {
+            proc: (addrParams: AddrParams) => Promise<void> & {result:{
+                [key:string]: (result:any, divResult:HTMLDivElement)=>void
+            }}
             [key: string]: (addrParams: AddrParams) => Promise<void>
         }
         interface ClientSideDefinition {
@@ -65,6 +72,7 @@
             top: number,
             left: number
         }
+        function gotoAddrParams(adrrParams:AddrParams):void
         function createForkeableButton(addrParams: AddrParams, opts:string|{label:string, class?:string, onclick?:(event?:Event)=>any, updateHrefBeforeClick?:(event?:Event)=>any}): HTMLButtonElement
         function createSmartButton(opts:{
             buttonLabel?:string,
