@@ -86,10 +86,13 @@
         var config:{
             config:{
                 "background-img":string
+            },
+            offline:{
+                mode:string
             }
         }
         function showPage():void
-        var autoSetupFunctions:(()=>Promise<void>)[]
+        var autoSetupFunctions:(()=>(void|Promise<void>))[]
         var offline:{
             mode:string
         }
