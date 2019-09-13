@@ -30,7 +30,9 @@ namespace serveContent {
         styl?: object
         serveStatic?: (root: string, options?:serveContentOptions) => express.Handler
     }
-    function serveContent(root: string, options?: serveContentOptions): express.Handler;
+    var transformer:{
+        [ext:string]:{optionName:string}
+    }
 }
 
 export = serveContent;
