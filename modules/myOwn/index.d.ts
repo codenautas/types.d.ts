@@ -19,11 +19,15 @@
             showText(result:any, divResult:HTMLDivElement):void
             showError(err:Error, divResult:HTMLDivElement):void
         }
+        type WScreen = (addrParams: AddrParams) => Promise<void> | {
+            parameters: {name:string, typeName:string}[],
+            mainAction: (params:object, divResult:HTMLDivElement)=>void
+        }
         interface WScreens {
             proc: (addrParams: AddrParams) => Promise<void> & {result:{
                 [key:string]: (result:any, divResult:HTMLDivElement)=>void
             }}
-            [key: string]: (addrParams: AddrParams) => Promise<void>
+            [key: string]: WScreen
         }
         interface ClientSideDefinition {
             update?: true | ((depot: Depot, fieldName: string) => void)
