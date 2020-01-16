@@ -8,7 +8,7 @@ declare function alertPromise(message:string, opts?:DialogOptions):Promise<void>
 
 declare function promptPromise(message:string, defaultOrOpts?:DialogOptions, optsIfDefault?:DialogOptions):Promise<void>
 
-declare function confirmPromise(message:string, opts?:DialogOptions):Promise<void>
+declare function confirmPromise(message:string, opts?:DialogOptions):Promise<boolean>
 
 declare function miniMenuPromise(listOptions:{value:any, label:string, img?:string, doneFun?:()=>void}[], opts?:DialogOptions):Promise<any>
 
@@ -26,7 +26,19 @@ declare function simpleFormPromise(
     }, opts?:DialogOptions
 ):Promise<any>
 
-declare function dialogPromise():Promise<void>
+declare type DialogContructor<t> = (innerDivDialog:HTMLDivElement, closeWindow:<T>(value:T)=>void) => void;
+
+declare type DialogOpts<T> = {
+    main?:object,
+    setAttrs?:object,
+    replacingElement?:HTMLElement,
+    closeValue?:T
+    reject?:boolean
+    withCloseButton?:any
+    underElement?:HTMLElement
+}
+
+declare function dialogPromise<T>(dialogConstructor:DialogContructor<T>, opts?:DialogOpts<T>):Promise<T>
 
 declare module "dialog-promise" {
     export = dialogPromise
