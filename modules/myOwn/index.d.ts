@@ -19,9 +19,9 @@
             showText(result:any, divResult:HTMLDivElement):void
             showError(err:Error, divResult:HTMLDivElement):void
         }
-        type WScreen = (addrParams: AddrParams) => Promise<void> | {
+        type WScreen = ((addrParams: AddrParams) => Promise<void>) | {
             parameters: {name:string, typeName:string}[],
-            mainAction: (params:object, divResult:HTMLDivElement)=>void
+            mainAction: (params:any, divResult:HTMLDivElement)=>void
         }
         interface WScreens {
             proc: (addrParams: AddrParams) => Promise<void> & {result:{
@@ -114,6 +114,7 @@
         var cache:{ // app cache 
             [key:string]: any 
         }
+        var ready:Promise<void>
     }
 
     declare var my:typeof myOwn
