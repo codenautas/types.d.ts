@@ -111,6 +111,11 @@
         function getReference(tableName:string):{
             dataReady:Promise<any[]>
         }
+        function tableGrid(tableName:string, mainElement:HTMLElement, opts:{
+            detailingForUrl?:any
+            detailingPath?:any
+            detailing?:object
+        }):TableGrid
         var cache:{ // app cache 
             [key:string]: any 
         }
