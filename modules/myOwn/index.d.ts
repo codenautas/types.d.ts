@@ -120,6 +120,17 @@
             [key:string]: any 
         }
         var ready:Promise<void>
+        function getReference(tableName:string):{
+            dataReady:Promise<any[]>
+        }
+        function getLocalVar(varName:string):any
+        function setLocalVar(varName:string, value:any):void
+        function existsLocalVar(varName:string):boolean
+        function removeLocalVar(varName:string):void
+        function getSessionVar(varName:string):any
+        function setSessionVar(varName:string, value:any):void
+        function existsSessionlVar(varName:string):boolean
+        function removeSessionVar(varName:string):void
     }
 
     declare var my:typeof myOwn
