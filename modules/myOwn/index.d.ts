@@ -123,6 +123,7 @@
         function getReference(tableName:string):{
             dataReady:Promise<any[]>
         }
+        function getAppPrefix():string
         function getLocalVar(varName:string):any
         function setLocalVar(varName:string, value:any):void
         function existsLocalVar(varName:string):boolean
