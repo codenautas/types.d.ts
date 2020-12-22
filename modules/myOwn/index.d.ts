@@ -20,7 +20,7 @@
             showError(err:Error, divResult:HTMLDivElement):void
         }
         type WScreen = ((addrParams: AddrParams) => Promise<void>) | {
-            parameters: {name:string, typeName:string}[],
+            parameters: {name:string, typeName:string, description?:string, defaultValue?:any}[],
             mainAction: (params:any, divResult:HTMLDivElement)=>void
         }
         interface WScreens {
@@ -115,6 +115,17 @@
             detailingForUrl?:any
             detailingPath?:any
             detailing?:object
+            fixedFields?:{fieldName:string, value:any}[]
+            tableDef?:{
+                layout?:{errorList?:boolean}
+                hiddenColumns?:string[]
+                title?:string
+                name?:string
+                filterColumns?:{column:string, operator:string, value:any}[]
+                allow?:{delete?:boolean, insert?:boolean, update?:boolean},
+                firstDisplayCount?:number, 
+                firstDisplayOverLimit?:number
+            }
         }):TableGrid
         var cache:{ // app cache 
             [key:string]: any 
