@@ -8,7 +8,7 @@ declare module "json4all"{
         function parse<T>(jsonText:string):T
         function stringify(object:any):string
         function addType(className:string, functions:AddTypeFunctions, skipIfExists?:boolean):void
-        function addType(constructor:FunctionConstructor, functions?:AddTypeFunctions, skipIfExists?:boolean):void
+        function addType(constructor:Function, functions?:AddTypeFunctions, skipIfExists?:boolean):void
     }
     export = json4all
 }
