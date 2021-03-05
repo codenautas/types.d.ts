@@ -24,7 +24,7 @@
             mainAction: (params:any, divResult:HTMLDivElement)=>void
         }
         interface WScreens {
-            proc: (addrParams: AddrParams) => Promise<void> & {result:{
+            proc: ((addrParams: AddrParams) => Promise<void>) & {result:{
                 [key:string]: (result:any, divResult:HTMLDivElement)=>void
             }}
             [key: string]: WScreen
