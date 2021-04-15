@@ -74,7 +74,9 @@
 
         function getRect(control: HTMLElement): {
             top: number,
-            left: number
+            left: number,
+            width: number,
+            height: number
         }
         function gotoAddrParams(adrrParams:AddrParams):void
         function createForkeableButton(addrParams: AddrParams, opts:string|{label:string, class?:string, onclick?:(event?:Event)=>any, updateHrefBeforeClick?:(event?:Event)=>any}): HTMLButtonElement
@@ -98,6 +100,7 @@
         var config:{
             config:{
                 "background-img":string
+                devel:boolean
             },
             offline:{
                 mode:string
