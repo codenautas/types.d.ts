@@ -22,6 +22,7 @@
         type WScreen = ((addrParams: AddrParams) => Promise<void>) | {
             parameters: {name:string, typeName:string, description?:string, defaultValue?:any}[],
             mainAction: (params:any, divResult:HTMLDivElement)=>void
+            autoproced?:boolean
         }
         interface WScreens {
             proc: ((addrParams: AddrParams) => Promise<void>) & {result:{
@@ -38,13 +39,13 @@
         }
 
         interface TableGrid{
+            dom: {main: HTMLElement, aggregate: {[key:string]: HTMLElement} }
             grid: {
                 [key:string]: any
-                dom: {main: HTMLElement, aggregate: {[key:string]: HTMLElement} }
                 modes: {saveByField: boolean, withColumnDetails: any[] }//FieldDefinition[]} // debería ser FieldDefinition pero ese tipo está declarado en BEPlus y esto (myOwn) está en types.d.ts/modules/myOwn
                 view: any
             }
-            retrieveRowAndRefresh: (depot: Depot) => Promise<void>
+            retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
         }
 
         interface Depot {
