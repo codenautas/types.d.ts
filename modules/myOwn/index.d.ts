@@ -48,7 +48,20 @@
             retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
         }
 
+        interface TableDef{
+            layout?:{errorList?:boolean}
+            hiddenColumns?:string[]
+            title?:string
+            name?:string
+            filterColumns?:{column:string, operator:string, value:any}[]
+            detailTables?:{table:string, fields:({source:string, target:string}|string)[],abr:string}[]
+            allow?:{delete?:boolean, insert?:boolean, update?:boolean},
+            firstDisplayCount?:number, 
+            firstDisplayOverLimit?:number
+        }
+
         interface Depot {
+            def: TableDef
             rowControls: { [key: string]: TypedControl<any> }
             row: { [key: string]: any }
             manager: TableGrid
@@ -120,16 +133,7 @@
             detailingPath?:any
             detailing?:object
             fixedFields?:{fieldName:string, value:any}[]
-            tableDef?:{
-                layout?:{errorList?:boolean}
-                hiddenColumns?:string[]
-                title?:string
-                name?:string
-                filterColumns?:{column:string, operator:string, value:any}[]
-                allow?:{delete?:boolean, insert?:boolean, update?:boolean},
-                firstDisplayCount?:number, 
-                firstDisplayOverLimit?:number
-            }
+            tableDef?:TableDef
         }):TableGrid
         var cache:{ // app cache 
             [key:string]: any 
