@@ -151,7 +151,7 @@
         function setSessionVar(varName:string, value:any):void
         function existsSessionlVar(varName:string):boolean
         function removeSessionVar(varName:string):void
-        function UriSearchToObject(queryOrHashString:string):object
+        function UriSearchToObject(queryOrHashString:string):AddrParams
         function replaceAddrParams(addrParams:AddrParams):void
     }
 
