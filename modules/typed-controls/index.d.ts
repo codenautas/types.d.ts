@@ -1,6 +1,6 @@
 declare module "typed-controls" {
     var showLupa:number|boolean
-    type TypedControlBase<T>={} | {
+    type TypedControlBase<T>={
         controledType:{
             typeInfo:{
                 valueNoData?:string
@@ -11,7 +11,7 @@ declare module "typed-controls" {
             fromPlainJson(json:string):T
             toPlainJson(value:T):string
         }
-        setTypedValue(value:T, fromUserInteraction?:boolean):void
+        setTypedValue(value:T|null, fromUserInteraction?:boolean):void
         getTypedValue():T
         disable(disabled?:boolean):void
     }

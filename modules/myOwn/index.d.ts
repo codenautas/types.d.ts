@@ -46,6 +46,8 @@
                 view: any
             }
             retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
+            waitForReady:(fun?:Function) => Promise<TableGrid>
+            depots:any[]
         }
 
         interface TableDef{
@@ -151,7 +153,7 @@
         function setSessionVar(varName:string, value:any):void
         function existsSessionlVar(varName:string):boolean
         function removeSessionVar(varName:string):void
-        function UriSearchToObject(queryOrHashString:string):AddrParams
+        function UriSearchToObject(queryOrHashString:string):object
         function replaceAddrParams(addrParams:AddrParams):void
     }
 
