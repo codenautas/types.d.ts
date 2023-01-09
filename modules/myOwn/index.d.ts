@@ -48,7 +48,12 @@
             }
             retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
             waitForReady:(fun?:Function) => Promise<TableGrid>
-            depots:any[]
+            depots:Depot[]
+            connector:{
+                opts?:{
+                    parentDepot: Depot
+                }
+            }
         }
 
         interface TableDef{
@@ -69,6 +74,7 @@
             row: { [key: string]: any }
             manager: TableGrid
             primaryKeyValues: any[]
+            detailControls: Record<string, {img:HTMLIFrameElement}>
         }
         
         interface ProcedureParameters {
@@ -141,6 +147,10 @@
         var cache:{ // app cache 
             [key:string]: any 
         }
+        var validators: Record<string, {
+            getMandatoryMap(row:Record<string, any>):Record<string, any>
+        }>
+        var conditions: Record<string, (depot:Depot)=>boolean>
         var ready:Promise<void>
         function getReference(tableName:string):{
             dataReady:Promise<any[]>
