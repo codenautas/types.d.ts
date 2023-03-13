@@ -125,6 +125,7 @@
                 "background-img":string
                 devel:boolean
             },
+            tableData:Record<string/*tableName*/,Record<string/*Pk.Json*/,Record<string/*fieldName*/,any>>>
             offline:{
                 mode:string
             }
@@ -164,7 +165,7 @@
         function setSessionVar(varName:string, value:any):void
         function existsSessionlVar(varName:string):boolean
         function removeSessionVar(varName:string):void
-        function UriSearchToObject(queryOrHashString:string):object
+        function UriSearchToObject(queryOrHashString:string):Record<string,any>
         function replaceAddrParams(addrParams:AddrParams):void
     }
 
