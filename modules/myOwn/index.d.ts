@@ -117,7 +117,8 @@
             showWithMiniMenu:boolean, 
             messages:{[keyof:string]:string}, 
             refresheable?:{refresh:()=>void}, 
-            acceptPhotos?:boolean
+            acceptPhotos?:boolean,
+            optsNames?:string[] // bool options to add in ajaxParams 
         ):{img:string, value:true, label:string, doneFun: ()=>void}|void
         function alertError(err:Error):Promise<void>
         var config:{
