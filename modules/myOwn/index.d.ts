@@ -21,7 +21,7 @@
             showError(err:Error, divResult:HTMLDivElement):void
         }
         type WScreen = ((addrParams: AddrParams) => Promise<void>) | {
-            parameters: {name:string, typeName:string, description?:string, defaultValue?:any}[],
+            parameters: {name:string, typeName:string, description?:string, defaultValue?:any, references?:string}[],
             mainAction: (params:any, divResult:HTMLDivElement)=>void
             autoproced?:boolean
         }
