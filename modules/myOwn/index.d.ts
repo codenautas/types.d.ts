@@ -15,6 +15,7 @@
             title?: string
             table?: string
             up?: Record<string, any>
+            ff?: Record<string, any>
         }
         interface ResultManager {
             showText(result:any, divResult:HTMLDivElement):void
