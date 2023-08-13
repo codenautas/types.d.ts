@@ -39,13 +39,17 @@
         interface ClientSides {
             [key: string]: ClientSideDefinition
         }
-
+        interface FilterNode {column:string, operator:string, value:any}
+        interface DepotFilter extends Depot { rowOperator:any[] } 
+        interface TableGridView{
+            filter?: DepotFilter[]
+        }
         interface TableGrid{
             dom: {main: HTMLElement, aggregate: {[key:string]: HTMLElement} }
             grid: {
                 [key:string]: any
                 modes: {saveByField: boolean, withColumnDetails: any[] }//FieldDefinition[]} // debería ser FieldDefinition pero ese tipo está declarado en BEPlus y esto (myOwn) está en types.d.ts/modules/myOwn
-                view: any
+                view: TableGridView
             }
             retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
             waitForReady:(fun?:Function) => Promise<TableGrid>
@@ -55,6 +59,11 @@
                     parentDepot: Depot
                 }
             }
+            view: TableGridView
+            // For filter:
+            createRowFilter: (lineNumber:number, filterNode:FitlerNode[]) => DepotFilter
+            updateFilterInfo: (infoLabel:string) => void
+            displayBody: () => void
         }
 
         interface TableDef{
@@ -62,7 +71,7 @@
             hiddenColumns?:string[]
             title?:string
             name?:string
-            filterColumns?:{column:string, operator:string, value:any}[]
+            filterColumns?:FilterNode[]
             detailTables?:{table:string, fields:({source:string, target:string}|string)[],abr:string}[]
             allow?:{delete?:boolean, insert?:boolean, update?:boolean},
             firstDisplayCount?:number, 
@@ -75,7 +84,13 @@
             row: { [key: string]: any }
             manager: TableGrid
             primaryKeyValues: any[]
-            detailControls: Record<string, {img:HTMLIFrameElement}>
+            detailControls: Record<string, {
+                img:HTMLIFrameElement
+                displayDetailGrid:(opts:{})=>void
+                forceDisplayDetailGrid:(opts:{})=>void
+                refreshAllRowsInGrid:(force:boolean)=>void
+                show:boolean
+            }>
         }
         
         interface ProcedureParameters {
@@ -169,6 +184,7 @@
         function removeSessionVar(varName:string):void
         function UriSearchToObject(queryOrHashString:string):Record<string,any>
         function replaceAddrParams(addrParams:AddrParams):void
+        var skipInFixedFields: Symbol // special value for row as "any detail"
     }
 
     declare var my:typeof myOwn
