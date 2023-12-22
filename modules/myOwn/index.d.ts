@@ -50,7 +50,6 @@
                 [key:string]: any
                 modes: {saveByField: boolean, withColumnDetails: any[] }//FieldDefinition[]} // debería ser FieldDefinition pero ese tipo está declarado en BEPlus y esto (myOwn) está en types.d.ts/modules/myOwn
                 view: TableGridView
-                depotRefresh: (depot:Depot, result:any, opts:{noDispatchEvents:boolean}) => void
                 createRowInsertElements: (aboveDepot?:Depot, belowDepot?:Depot) => any
             }
             retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
@@ -66,6 +65,8 @@
             createRowFilter: (lineNumber:number, filterNode:FitlerNode[]) => DepotFilter
             updateFilterInfo: (infoLabel:string) => void
             displayBody: () => void
+            depotRefresh: (depot:Depot, result:any, opts:{noDispatchEvents:boolean}) => void
+            createRowInsertElements: (aboveDepot?:Depot, belowDepot?:Depot) => any
         }
 
         interface TableDef{
