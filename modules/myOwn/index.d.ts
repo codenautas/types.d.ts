@@ -65,8 +65,8 @@
             createRowFilter: (lineNumber:number, filterNode:FitlerNode[]) => DepotFilter
             updateFilterInfo: (infoLabel:string) => void
             displayBody: () => void
-            depotRefresh: (depot:Depot, result:any, opts:{noDispatchEvents:boolean}) => void
-            createRowInsertElements: (aboveDepot?:Depot, belowDepot?:Depot) => any
+            depotRefresh: (depot:Depot, result:any, opts?:{noDispatchEvents:boolean}) => void
+            createRowInsertElements: (aboveDepot?:Depot|null, belowDepot?:Depot|null) => any
         }
 
         interface TableDef{
