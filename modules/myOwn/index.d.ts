@@ -188,6 +188,7 @@
         function UriSearchToObject(queryOrHashString:string):Record<string,any>
         function replaceAddrParams(addrParams:AddrParams):void
         var skipInFixedFields: Symbol // special value for row as "any detail"
+        function log(error:Error):void
     }
 
     declare var my:typeof myOwn
