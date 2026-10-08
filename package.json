@@ -11,13 +11,12 @@
         "@types/express": "^5.0.0"
     },
     "devDependencies": {
-        "qa-control": "^0.11.3"
+        "qa-control": "^0.12.0"
     },
     "qa-control": {
-        "package-version": "0.11.3",
         "run-in": "server",
         "type": "lib",
-        "filenameMainDoc": "README.md",
+        "fileNameMainDoc": "README.md",
         "multilang": "no",
         "silenced": [
             "packagejson_main_file_1_does_not_exists"
