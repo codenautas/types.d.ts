@@ -2,7 +2,7 @@
     "name": "types.d.ts",
     "description": "fast draft types",
     "repository": "codenautas/types.d.ts",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "license": "MIT",
     "files": [
         "modules"
