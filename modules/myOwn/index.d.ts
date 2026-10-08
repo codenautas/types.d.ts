@@ -112,6 +112,7 @@
         var path: {
             img: string
         }
+        var backgroundUrl: string // css value for background-image calculated by backend-plus (my-ajax.js), '' when there is no background
         var ajax: MyAjax
 
         function getRect(control: HTMLElement): {
