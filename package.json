@@ -1,6 +1,7 @@
 {
     "name": "types.d.ts",
     "description": "fast draft types",
+    "repository": "codenautas/types.d.ts",
     "version": "0.6.22",
     "license": "MIT",
     "files": [
@@ -8,5 +9,25 @@
     ],
     "dependencies": {
         "@types/express": "^5.0.0"
+    },
+    "devDependencies": {
+        "qa-control": "^0.11.3"
+    },
+    "qa-control": {
+        "package-version": "0.11.3",
+        "run-in": "server",
+        "type": "lib",
+        "filenameMainDoc": "README.md",
+        "multilang": "no",
+        "silenced": [
+            "packagejson_main_file_1_does_not_exists"
+        ],
+        "gha":{
+             "skip_tests": true
+        }
+    },
+    "scripts": {
+        "test": "echo no tests needed",
+        "test-ci": "echo no tests needed"
     }
 }
