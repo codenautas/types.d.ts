@@ -5,7 +5,7 @@ declare module "typed-controls" {
             typeInfo:{
                 valueNoData?:string
                 valueUnknownData?:string
-                
+
             }
             isValidTypedData(value:T):boolean
             fromPlainJson(json:string):T

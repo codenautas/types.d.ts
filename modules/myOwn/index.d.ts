@@ -40,7 +40,7 @@
             [key: string]: ClientSideDefinition
         }
         interface FilterNode {column:string, operator:string, value:any}
-        interface DepotFilter extends Depot { rowOperator:any[] } 
+        interface DepotFilter extends Depot { rowOperator:any[] }
         interface TableGridView{
             filter?: DepotFilter[]
         }
@@ -77,7 +77,7 @@
             filterColumns?:FilterNode[]
             detailTables?:{table:string, fields:({source:string, target:string}|string)[],abr:string}[]
             allow?:{delete?:boolean, insert?:boolean, update?:boolean},
-            firstDisplayCount?:number, 
+            firstDisplayCount?:number,
             firstDisplayOverLimit?:number
         }
 
@@ -95,7 +95,7 @@
                 show:boolean
             }>
         }
-        
+
         interface ProcedureParameters {
             [key:string]:any
         }
@@ -133,12 +133,12 @@
         function dialogUpload<T extends object>(
             ajaxPath:string|string[],
             ajaxParams:T,
-            ajaxPrepareResultFun:(result:any)=>any, 
-            showWithMiniMenu:boolean, 
-            messages:{[keyof:string]:string}, 
-            refresheable?:{refresh:()=>void}, 
+            ajaxPrepareResultFun:(result:any)=>any,
+            showWithMiniMenu:boolean,
+            messages:{[keyof:string]:string},
+            refresheable?:{refresh:()=>void},
             acceptPhotos?:boolean,
-            optsNames?:string[] // bool options to add in ajaxParams 
+            optsNames?:string[] // bool options to add in ajaxParams
         ):{img:string, value:true, label:string, doneFun: ()=>void}|void
         function alertError(err:Error):Promise<void>
         var config:{
@@ -166,8 +166,8 @@
             fixedFields?:{fieldName:string, value:any}[]
             tableDef?:TableDef
         }):TableGrid
-        var cache:{ // app cache 
-            [key:string]: any 
+        var cache:{ // app cache
+            [key:string]: any
         }
         var validators: Record<string, {
             getMandatoryMap(row:Record<string, any>):Record<string, any>

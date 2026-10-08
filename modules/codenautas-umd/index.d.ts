@@ -13,5 +13,3 @@ declare namespace define{
 declare var exports:{
     [key:string]:()=>void
 }
-
-
