@@ -18,6 +18,7 @@ declare type DialogOptions = {
     askForNoRepeat?:string
     reject?:boolean
     underElement?:Element
+    withCloseButton?:boolean
 }
 
 declare function simpleFormPromise(
@@ -28,7 +29,7 @@ declare function simpleFormPromise(
 
 declare type DialogContructor<t> = (innerDivDialog:HTMLDivElement, closeWindow:<T>(value:T)=>void) => void;
 
-declare type buttonDef = {label:string, value:any}
+declare type ButtonDef = {label:string, value:any}
 
 declare type DialogOpts<T> = {
     main?:object,

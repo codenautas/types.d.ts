@@ -4,7 +4,9 @@
         var firstDisplayCount:number
         var i18n:{es?:{[key:string]:string}, en?:{[key:string]:string}}
         var messages:{[key:string]:string}
-
+        var menuName: string;
+        var menuSeparator: string;
+        
         interface AddrParams {
             w?: 'menu' | 'table' | 'proc' | 'path' | 'function'
             i?: string
@@ -23,7 +25,7 @@
         }
         type WScreen = ((addrParams: AddrParams) => Promise<void>) | {
             parameters: {name:string, typeName:string, description?:string, defaultValue?:any, references?:string}[],
-            mainAction: (params:any, divResult:HTMLDivElement)=>void
+            mainAction: (params:any, divResult:HTMLDivElement)=>void | Promise<void>,
             autoproced?:boolean
         }
         interface WScreens {
@@ -51,8 +53,9 @@
                 modes: {saveByField: boolean, withColumnDetails: any[] }//FieldDefinition[]} // debería ser FieldDefinition pero ese tipo está declarado en BEPlus y esto (myOwn) está en types.d.ts/modules/myOwn
                 view: TableGridView
                 createRowInsertElements: (aboveDepot?:Depot, belowDepot?:Depot) => any
+                def: TableDef
             }
-            retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents:true}) => Promise<void>
+            retrieveRowAndRefresh: (depot: Depot, opts?:{noDispatchEvents?:true, retrieveWithBroadWhere?: boolean}) => Promise<void>
             waitForReady:(fun?:Function) => Promise<TableGrid>
             depots:Depot[]
             connector:{
@@ -190,6 +193,20 @@
         function replaceAddrParams(addrParams:AddrParams):void
         var skipInFixedFields: Symbol // special value for row as "any detail"
         function log(error:Error):void
+        type UbicacionesCallback = (
+            div: HTMLElement, 
+            o: any, 
+            a: string
+        ) => { 
+            title: HTMLElement | null; 
+            data: HTMLElement; 
+            skip: boolean | null; 
+        };
+        function agregar_json(
+            div: HTMLElement, 
+            o: any, 
+            ubicaciones?: UbicacionesCallback
+        ): void;
     }
 
     declare var my:typeof myOwn
